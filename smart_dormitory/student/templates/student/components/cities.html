@@ -1,0 +1,104 @@
+ {% load static %}
+ <!-- Category Start -->
+ <div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Popular Cities</h1>
+            <p>Book student accommodations near top cities and universities around the Country</p>
+        </div>
+        {% for count in city_property_counts %}
+    <p>{{ count.city }}: {{ count.property_count }} properties</p>
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=lahore">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/lahore.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Lahore</h6>
+                        <span>{% if count.city == 'Lahore' %} {{ count.property_count }} {% else %} 0 {% endif %} Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=faisalabad">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/faisalabad.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Faisalabad</h6>
+                        <span>{% if count.city == 'Faisalabad' %} {{ count.property_count }} {% else %} 0 {% endif %} Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=karachi">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/karachi.jpg' %}" alt="Icon">
+                        </div>
+                        <h6>Karachi</h6>
+                        <span> {% if count.city == 'Karachi' %} {{ count.property_count }} {% else %} 0 {% endif %} Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=abbottabad">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/abbottabad.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Abbottabad</h6>
+                        <span> {% if count.city == 'Abbottabad' %} {{ count.property_count }} {% else %} 0 {% endif %}  Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=multan">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/multan.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Multan</h6>
+                        <span>{% if count.city == 'Multan' %} {{ count.property_count }} {% else %} 0 {% endif %}  Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{% url 'property' %}?q=peshawar">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/peshawar.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Peshawar</h6>
+                        <span>{% if count.city == 'Peshawar' %} {{ count.property_count }} {% else %} 0 {% endif %}  Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="islamabad">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/islamabad.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Islamabad</h6>
+                        <span> {% if count.city == 'Islamabad' %} {{ count.property_count }} {% else %} 0 {% endif %}  Properties</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="rawalpindi">
+                    <div class="rounded p-4">
+                        <div class="icon mb-3">
+                            <img class="img-fluid" style="border-radius: 40px; height: 125px; width: 225px;" src="{% static 'img/rawalpindi.jpeg' %}" alt="Icon">
+                        </div>
+                        <h6>Rawalpindi</h6>
+                        <span> {% if count.city == 'Rawalpindi' %} {{ count.property_count }} {% else %} 0 {% endif %}  Properties</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Category End -->

@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-xxl bg-white p-0">
+  <!-- Spinner Start -->
+  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
+  </div>
+  <!-- Spinner End -->
+
+  {% include 'student/components/navbar.html' %}
+
+  {% include 'student/components/header.html' %}
+
+  {% include 'student/components/search.html' %}
+
+  <!-- Block 1 Start -->
+
+  <div class="stats-container">
+      <div class="stat">
+        <div class="icon">🛏️</div>
+        <h5>1M+ Beds</h5>
+        <p>Book your perfect place from an extensive list of options.</p>
+      </div>
+      <div class="stat">
+        <div class="icon">🎓</div>
+        <h5>800+ Universities</h5>
+        <p>Find the best student homes near prestigious universities.</p>
+      </div>
+      <div class="stat">
+        <div class="icon">🌐</div>
+        <h5>250+ Global Cities</h5>
+        <p>We operate in major cities around the world.</p>
+      </div>
+      <div class="stat">
+        <div class="icon">⭐</div>
+        <h5>4.8/5 on Trustpilot</h5>
+        <p>4000+ students have rated us excellent for our services.</p>
+      </div>
+  </div>
+
+  <!-- Block 1 END -->
+<div id="cities">
+  {% include 'student/components/cities.html' %}
+</div>
+  {% include 'student/components/about_start.html' %}
+
+  {% include 'student/components/property_list.html' %}
+
+  {% include 'student/components/testimonial.html' %}
+
+  {% include 'student/components/footer.html' %}
+
+  
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+  
+
+{% endblock %} 

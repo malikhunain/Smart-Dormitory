@@ -1,0 +1,296 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student/components/navbar.html' %}
+
+<div class="card">
+  <div class="left">
+    <div class="header">
+      <div class="card-header">
+        <div class="breadcrumbs">United Kingdom / England / Birmingham</div>
+        
+        <div class="image-gallery">
+          <div class="main-image">
+            {% for image in property.images_or_videos.all %}
+            {% if forloop.counter == 1 %}
+            <img src="{{ request.scheme }}://{{ request.get_host }}{{ image.file.url }}" alt="Main Property Image">
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="thumbnail-images">
+            {% for image in property.images_or_videos.all %}
+            {% if forloop.counter > 1 %}
+            {% if forloop.counter <= 3 %}
+            <img src="{{ request.scheme }}://{{ request.get_host }}{{ image.file.url }}" alt="Thumbnail Image">
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+      <div class="card-body">
+        <div class="property-info">
+          <h2 class="property-title">{{ property.name }}</h2>
+          <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{property.street_address}} street, {{property.city}}, {{property.state}}, {{property.country}}</p>
+          <div class="property-features">
+            {% for amenity in property.amenities.all %}
+            {% if forloop.counter <= 3 %}
+            <span class="feature">{{amenity.name}}</span>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Description-->
+    <div class="description">
+      <h5>Description</h5>
+      <p>{{property.description}}</p>
+    </div>
+    <!--Amenities-->
+    <div class="amenities">
+      <h5>Amenities</h5>
+      <div class="amenities-list">
+        {% for amenity in property.amenities.all %}
+        <div class="amenity">
+          <i class="fa fa-check text-primary me-2"></i>{{amenity.name}}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="property-rating">
+      <div class="rating-stars">★ 5.0 (8+ reviews)</div>
+      <hr>
+    </div>
+    <div class="property-price">
+      {% for room in property.rooms.all %}
+      {% if forloop.counter <= 1 %}
+      <div class="price">Starting from ${{room.price}}/week</div>
+      {% endif %}
+      {% endfor %}
+      <hr>
+    </div>
+    <div class="property-actions">
+      <button class="view-rooms">View Rooms</button>
+      <button class="enquire-now">Enquire Now</button>
+    </div>
+  </div>
+</div>
+<!--Rooms-->
+<div class="rooms">
+  <div class="header">
+    <h5>Rooms ()</h5>
+    <hr>
+    <div class="filters">
+        <select name="stayDuration" id="stayDuration">
+            <option value="short">Short Stay</option>
+            <option value="long">Long Stay</option>
+        </select>
+        <select name="moveInMonth" id="moveInMonth">
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <!-- Add other months -->
+        </select>
+        <button id="clearFilters">Clear</button>
+    </div>
+    <div class="border"></div>
+  </div>
+  {% for room in property.rooms.all %}
+  <section class="room-listing">
+    <article class="room">
+      <div class="room-info">
+        <figure class="room-layout">
+          {% for image in room.images_or_videos.all %}
+          {% if forloop.counter == 1 %}
+            <img src="{{ request.scheme }}://{{ request.get_host }}{{ image.file.url }}" alt="8 Bed Standard Ensuite layout">
+          {% endif %}
+          {% endfor %}
+        </figure>
+        <div class="room-details">
+          <h6>{{ room.name }} / {{room.room_type}}</h6>
+            <p class="price">${{ room.price }}/week</p>
+            <div class="attributes">
+              <p class="capacity">Capacity: {{room.occupancy}} Peoples</p>
+              <p class="room-size">Room Size: {{room.room_dimensions}}</p>
+            </div>
+            <ul class="features">
+  
+              {% for amenity in room.amenities.all %}
+              {% if forloop.counter <= 5 %}
+                <li>• {{amenity.name}}</li>
+              {% endif %}
+                {% endfor %}
+                <li><a href="#"><u>view all details</u></a></li>
+            </ul>
+        </div>
+      </div>
+      <div class="roommates">
+        <h6>Roommates: </h6>
+        <div class="roommates-list">
+          {% for roommate in room.roommates.all %}
+          {% if forloop.counter <= 3 %}
+          <div class="roommate">
+            {% for image in room.images_or_videos.all %}
+            {% if forloop.counter == 1 %}
+            <img src="{{ request.scheme }}://{{ request.get_host }}{{ image.file.url }}" alt="Roommate Image">
+            {% endif %}
+            {% endfor %}
+            <div class="roommate-info">
+              <p><a href="{% url 'user-profile' roommate.user.id %}">{{roommate.user.username}}</a></p>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="enquiry">
+        <button class="view-rooms">View Rooms</button>
+      <button class="enquire-now">Enquire Now</button>
+      </div>
+    </article>
+  </section>
+  {% endfor %}
+</div>
+
+
+<div class="review-container">
+  <div class="review">
+      <h1>Reviews (reviews_count)</h1>
+      <div class="stars" style="display: block;">★ <span style="color: black;">{{student_total_rating_property}} <span style="font-size: 13px;">({{reviews.count}} ratings)</span></span></div>
+      <hr>
+      <br>
+      {% for review in reviews %}
+      {% if forloop.counter <= 3 %}
+      <div class="review-header">
+          <span class="review-author"><a href="{% url 'user-profile' review.student.user.id %}">{{review.student.user.username}}</a></span>
+          <span class="review-date">{{review.created_at}}</span>
+      </div>
+      <div class="review-rating">{{review.rating}} ★</div>
+      <p class="review-text">{{review.text}}</p>
+      <hr>
+      {% endif %}
+      {% endfor %}
+  </div>
+  
+  
+  
+  <button class="view-all" id="view-all-reviews-btn">View all Reviews</button>
+
+  <!-- The Modal -->
+<div id="reviewsModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <!-- Repeat this block for each review -->
+    <div class="reviews-wrapper">
+      <div class="review">
+          <h1>Reviews (reviews_count)</h1>
+          <div class="stars" style="display: block;">★ <span style="color: black;">{{student_total_rating_property}} <span style="font-size: 13px;">({{reviews_count}} ratings)</span></span></div>
+          <hr>
+          <br>
+          {% for review in reviews %}
+          <div class="review-header">
+              <span class="review-author"><a href="{% url 'user-profile' review.student.user.id %}">{{review.student.user.username}}</a></span>
+              <span class="review-date">7 days ago</span>
+          </div>
+          <div class="review-rating">{{review.rating}} ★</div>
+          <p class="review-text">{{review.text}}</p>
+          <hr>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="got-it-btn">Got it</button>
+    </div>
+    </div>
+  
+
+</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+  const card = document.querySelector('.card');
+  const right = document.querySelector('.card .right');
+  const rightInitialTop = right.offsetTop; // Store the initial top offset of the right div
+  console.log(rightInitialTop);
+
+    window.addEventListener('scroll', () => {
+    // Get the bounding rectangle of the card
+    const cardRect = card.getBoundingClientRect();
+
+    // Calculate the bottom position of the card from the top of the document
+    const cardBottom = window.pageYOffset + cardRect.bottom;
+
+    // Calculate the top position for the right div when it should stop moving
+    const rightStopTop = 800;
+
+    // Get the current scroll position
+    const scrollPosition = window.pageYOffset;
+
+    if (scrollPosition > rightInitialTop && scrollPosition < rightStopTop) {
+      // Scroll position is between the top of the card and the stop point
+      right.style.position = 'fixed';
+      right.style.top = '140px';
+      right.style.marginLeft = '900px';
+      right.style.width = '440px';
+    } else if (scrollPosition >= rightStopTop) {
+      // Scroll position is beyond the stop point
+      right.style.position = 'absolute';
+      right.style.top = `${rightStopTop - card.offsetTop}px`;
+      right.style.marginLeft = '900px';
+    } else {
+      // Scroll position is above the initial top position of the right div
+      right.style.position = 'absolute';
+      right.style.top = `${rightInitialTop}px`;
+    }
+  });
+});
+
+
+// Get the modal
+var modal = document.getElementById('reviewsModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById('view-all-reviews-btn');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName('close')[0];
+
+// Get the "Got it" button that also closes the modal
+var gotItBtn = document.getElementsByClassName('got-it-btn')[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks on "Got it", close the modal
+gotItBtn.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+</script>
+
+{% include 'student/components/footer.html' %}
+
+{% endblock %}

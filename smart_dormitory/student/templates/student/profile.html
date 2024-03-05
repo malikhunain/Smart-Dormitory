@@ -1,0 +1,221 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student/components/navbar.html' %}
+
+
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                </div>
+                                <div class="stars" style="display: block;">★ <span style="color: black;">{{overall_rating}} <span style="font-size: 13px;">({{total_reviews}})</span></span></div>
+                                <h6 class="f-w-600">{{userProfile.user.username}}</h6>
+                                <p>{{user.occupation}}</p>
+                                {% if request.user == user %}
+                                    <a href="{% url 'update-profile' userProfile.user.id %}" class="edit-button"  style="color: white;">Edit Profile</a>
+                                {% endif %}
+                                <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Email</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.email}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Address</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.city}}, {{userProfile.state}}, {{userProfile.country}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Age:</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.age}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Gender</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.gender}}</h6>
+                                    </div>
+                                </div>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Personal</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Religion</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.religion}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Academic Level</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.academic_level}}</h6>
+                                    </div>
+                                </div>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Field of Study</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.major}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">University</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.university}}</h6>
+                                    </div>
+                                </div>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Hobbies and Interests</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">{{userProfile.interests}}</p>
+                                    </div>
+                                </div>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Preferred Roommate</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">{{userProfile.preferred_roommate}}</p>
+                                    </div>
+                                </div>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Others</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Cleanliness</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.cleanliness_level}}</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Smooking</p>
+                                        <h6 class="text-muted f-w-400">{{userProfile.smoking_preference}}</h6>
+                                    </div>
+                                </div>
+                                    
+                                
+                            </div>
+                            <div class="about-section">
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">About:</h6>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">{{userProfile.bio}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="reviews" style="width: 88%; margin: auto;">
+        <div class="review-container">
+            <div class="review">
+                <h1>({{roommate_reviews_received_count}}) Reviews by Roommates</h1>
+                <div class="stars" style="display: block;">★ <span style="color: black;">{{roommate_total_rating_received}} <span style="font-size: 13px;">({{roommate_reviews_received_count}} ratings)</span></span></div>
+                <hr>
+                <br>
+                {% for review in roommate_reviews_received %}
+                <div class="review-header">
+                    <span class="review-author">{{review.reviewer.user.username}}</span>
+                    <span class="review-date">{{review.created_at }}</span>
+                </div>
+                <div class="review-rating">{{review.rating}} ★</div>
+                <p class="review-text">{{review.text}}</p>
+                <hr>
+                {% endfor %}
+            </div>
+
+            <!-- Repeat the above block for each review -->
+            <button class="view-all" id="view-all-reviews-btn">View all Reviews</button>
+          
+            <!-- The Modal -->
+            <div id="reviewsModal" class="modal">
+          
+                <!-- Modal content -->
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <!-- Repeat this block for each review -->
+                  <div class="reviews-wrapper">
+                      <div class="review">
+                          <h1>({{roommate_reviews_received_count}}) Reviews by Roommates</h1>
+                          <div class="stars" style="display: block;">★ <span style="color: black;">{{roommate_total_rating_received}} <span style="font-size: 13px;">({{roommate_reviews_received_count}} ratings)</span></span></div>
+                          <hr>
+                          <br>
+                          {% for review in roommate_reviews_received %}
+                          <div class="review-header">
+                              <span class="review-author">{{review.reviewer}}</span>
+                              <span class="review-date">{{review.created_at }}</span>
+                          </div>
+                          <div class="review-rating">{{review.rating}} ★</div>
+                          <p class="review-text">{{review.text}}</p>
+                          <hr>
+                          {% endfor %}
+                      </div>
+                  </div>
+              </div> 
+            </div>
+        </div>
+
+        <div class="review-container">
+            <div class="review">
+                <h1>({{student_reviews_count}}) Reviews By Property Owner</h1>
+                <div class="stars" style="display: block;">★ 
+                    <span style="color: black;">{{student_total_rating_property}} 
+                        <span style="font-size: 13px;">({{student_reviews_count}} ratings)</span>
+                    </span>
+                </div>
+                <hr>
+                <br>
+                {% for review in student_reviews %}
+                <div class="review-header">
+                    <span class="review-author">{{review.reviewer.name}}</span>
+                    <span class="review-date">{{review.created_at }}</span>
+                </div>
+                <div class="review-rating">{{review.rating}} ★</div>
+                <p class="review-text">{{review.text}}</p>
+                <hr>
+                {% endfor %}
+            </div>
+
+            <!-- Repeat the above block for each review -->
+            <button class="view-all" id="view-all-reviews-btn">View all Reviews</button>
+          
+            <!-- The Modal -->
+            <div id="reviewsModal" class="modal">
+          
+                <!-- Modal content -->
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <!-- Repeat this block for each review -->
+                  <div class="reviews-wrapper">
+                      <div class="review">
+                            <h1>({{student_reviews_count}}) Reviews by Property Owner</h1>
+                            <div class="stars" style="display: block;">★ <span style="color: black;">{{student_total_rating}} <span style="font-size: 13px;">({{student_reviews_count}} ratings)</span></span></div>
+                            <hr>
+                            <br>
+                            {% for review in student_reviews %}
+                            <div class="review-header">
+                            <span class="review-author">{{review.reviewer}}</span>
+                            <span class="review-date">{{review.created_at }}</span>
+                            </div>
+                            <div class="review-rating">{{review.rating}} ★</div>
+                            <p class="review-text">{{review.text}}</p>
+                            <hr>
+                            {% endfor %}
+                      </div>
+                  </div>
+              </div> 
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  {% include 'student/components/footer.html' %}
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'student/components/navbar.html' %}
+
+<div class="search-bar" style="width: 93.5%; margin: auto;">
+    {% include 'student/components/search.html' %}
+</div>
+
+{% include 'student/components/property_list.html' %}
+
+{% include 'student/components/footer.html' %}
+
+{% endblock %}

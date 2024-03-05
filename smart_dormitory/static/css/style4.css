@@ -1,0 +1,157 @@
+
+.page-content {
+    width: 94%;
+    margin: auto;
+}
+
+.padding {
+    padding: 3rem !important;
+}
+
+.padding .user-card-full {
+    width: 1200px;
+}
+
+.padding .card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    border: none;
+    margin-bottom: 30px;
+    background-color: #fff;
+    margin-left: -300px;
+}
+
+.col-sm-8 {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-sm-8 .card-block {
+    padding: 1.25rem;
+    width: 900px;
+}
+
+.col-sm-8 .about-section {
+    width: 500px;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.padding .m-r-0 {
+    margin-right: 0px;
+}
+
+.padding .m-l-0 {
+    margin-left: 0px;
+}
+
+.padding .user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+    width: 250px;
+}
+
+.padding .bg-c-lite-green {
+        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+.padding .user-profile {
+    padding: 20px 0;
+}
+
+.padding .card-block {
+    padding: 1.25rem;
+}
+
+.padding .m-b-25 {
+    margin-bottom: 25px;
+}
+
+.padding .img-radius {
+    border-radius: 5px;
+}
+
+
+ 
+.padding h6 {
+    font-size: 14px;
+}
+
+.padding .card .card-block p {
+    line-height: 25px;
+}
+
+
+@media only screen and (min-width: 1400px){
+p {
+    font-size: 14px;
+}
+}
+
+.padding .card-block {
+    padding: 1.25rem;
+}
+
+.padding .b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.padding .m-b-20 {
+    margin-bottom: 20px;
+}
+
+.padding .p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.padding .card .card-block p {
+    line-height: 25px;
+}
+
+.padding .m-b-10 {
+    margin-bottom: 10px;
+}
+
+.padding .text-muted {
+    color: #919aa3 !important;
+}
+
+.padding .b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.padding .f-w-600 {
+    font-weight: 600;
+}
+
+.padding .m-b-20 {
+    margin-bottom: 20px;
+}
+
+.padding .m-t-40 {
+    margin-top: 20px;
+}
+
+.padding .p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.padding .m-b-10 {
+    margin-bottom: 10px;
+}
+
+.padding .m-t-40 {
+    margin-top: 20px;
+}
+
+.padding .user-card-full .social-link li {
+    display: inline-block;
+}
+
+.padding .user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
