@@ -10,7 +10,7 @@
   <div class="left">
     <div class="header">
       <div class="card-header">
-        <div class="breadcrumbs">United Kingdom / England / Birmingham</div>
+        <div class="breadcrumbs">Pakistan / Punjab / Lahore</div>
         
         <div class="image-gallery">
           <div class="main-image">
@@ -65,7 +65,7 @@
   </div>
   <div class="right">
     <div class="property-rating">
-      <div class="rating-stars">★ 5.0 (8+ reviews)</div>
+      <div class="rating-stars">★ {{student_total_rating_property}} ({{reviews.count}} reviews)</div>
       <hr>
     </div>
     <div class="property-price">
@@ -85,7 +85,7 @@
 <!--Rooms-->
 <div class="rooms">
   <div class="header">
-    <h5>Rooms ()</h5>
+    <h5>Rooms ({{rooms_count}})</h5>
     <hr>
     <div class="filters">
         <select name="stayDuration" id="stayDuration">
@@ -161,7 +161,7 @@
 
 <div class="review-container">
   <div class="review">
-      <h1>Reviews (reviews_count)</h1>
+      <h1>Reviews ({{reviews_count}})</h1>
       <div class="stars" style="display: block;">★ <span style="color: black;">{{student_total_rating_property}} <span style="font-size: 13px;">({{reviews.count}} ratings)</span></span></div>
       <hr>
       <br>

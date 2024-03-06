@@ -192,6 +192,7 @@ def property_detail(request, pk):
 
     student_total_rating_property = reviews.aggregate(Avg('rating'))['rating__avg']
     reviews_count = reviews.count()
+    room_count = Property.objects.get(id=pk).rooms.all().count()
 
 
     context = {
@@ -199,6 +200,7 @@ def property_detail(request, pk):
         'reviews': reviews,
         'student_total_rating_property': student_total_rating_property,
         'reviews_count': reviews_count,
+        'rooms_count' : room_count
     }
     return render(request, 'student/property_detail.html', context)
 
